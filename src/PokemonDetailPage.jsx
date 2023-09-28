@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 function PokemonDetailPage({ url }) {
   const [pokemonDetails, setPokemonDetails] = useState({});
@@ -9,13 +9,13 @@ function PokemonDetailPage({ url }) {
       try {
         const response = await fetch(url);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         const data = await response.json();
         setPokemonDetails(data);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
         setLoading(false);
       }
     }
@@ -34,7 +34,12 @@ function PokemonDetailPage({ url }) {
           <p>Order: {pokemonDetails.order}</p>
           <p>Base Experience: {pokemonDetails.base_experience}</p>
           <p>Height: {pokemonDetails.height}</p>
-          <p>Abilities: {pokemonDetails.abilities.map((ability) => ability.ability.name).join(', ')}</p>
+          <p>
+            Abilities:{" "}
+            {pokemonDetails.abilities
+              .map((ability) => ability.ability.name)
+              .join(", ")}
+          </p>
         </div>
       )}
     </div>
